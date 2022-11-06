@@ -2,7 +2,7 @@ import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import { Route, BrowserRouter, Routes } from 'react-router-dom';
+import { Route, Routes, HashRouter } from 'react-router-dom';
 import routers from './routers';
 import type { RoutersConfigType } from './routers';
 
@@ -11,14 +11,14 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <HashRouter basename='/'>
       <Suspense fallback={<h1>lodaing.....</h1>}>
         <Routes>
           {RenderMyRoutes(routers)}
-          <Route path="*" element={<h1>404...</h1>} />
+          <Route path="1" element={<h1>404...</h1>} />
         </Routes>
       </Suspense>
-    </BrowserRouter>
+    </HashRouter>
   </React.StrictMode>
 );
 
