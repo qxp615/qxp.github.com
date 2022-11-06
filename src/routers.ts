@@ -12,18 +12,18 @@ interface routeConfig {
 
 const routesConfig: RoutersConfigType = [
     {
-        path: '/',
+        path: '/react_code',
         component: lazy(() => import('./App')),
         name: 'react测试',
         children: [
             {
                 path: 'hooks-test',
-                component: lazy(() => import('./pages/hooksTest/index')),
+                component: lazy(() => import('./pages/readReact/index')),
                 name: 'hooks 测试',
                 children: [
                     {
                         path: 'use-state',
-                        component: lazy(() => import('./pages/hooksTest/pages/useStateTest/index')),
+                        component: lazy(() => import('./pages/readReact/pages/useStateTest/index')),
                         name: 'useState'
                     }
                 ]

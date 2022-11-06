@@ -1,6 +1,4 @@
-import React, { useMemo, Suspense } from 'react';
-import logo from './logo.svg';
-import { BrowserRouter, Routes, Router, Link, Route, Outlet } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import './App.css';
 import routers from './routers';
 import type { RoutersConfigType } from './routers';
@@ -21,7 +19,6 @@ function App(props: any) {
 }
 
 function RenderNav(routers: RoutersConfigType, fatherPath = '') {
-  console.log('Nav 更新了')
   return <ol>
     {routers.map(({ path, name, children }) => {
       let to = ''
@@ -32,7 +29,6 @@ function RenderNav(routers: RoutersConfigType, fatherPath = '') {
       } else {
         to = path
       }
-      console.log(to, 111)
       return <li key={name + path}>
         <Link to={to}>{name}</Link>
         {

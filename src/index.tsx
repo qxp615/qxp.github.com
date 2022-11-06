@@ -1,9 +1,8 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { Router, Route, BrowserRouter, Routes } from 'react-router-dom';
+import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import routers from './routers';
 import type { RoutersConfigType } from './routers';
 
@@ -16,6 +15,7 @@ root.render(
       <Suspense fallback={<h1>lodaing.....</h1>}>
         <Routes>
           {RenderMyRoutes(routers)}
+          <Route path="*" element={<h1>404...</h1>} />
         </Routes>
       </Suspense>
     </BrowserRouter>
@@ -35,6 +35,6 @@ function RenderMyRoutes(routesConfig: RoutersConfigType) {
       }
     </Route>
   })
-  console.log(route)
+  console.log(route, 'route')
   return route
 }
