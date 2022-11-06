@@ -4,7 +4,8 @@ on: # 指定触发workflow的条件，这里是指定了每push一次到main分�
     branches:
       - main
       - init
-#
+permissions:
+  issues: write
 jobs: # workflows文件主体，可以指定一个或者多个，这里指定了一个job - build-and-deploy
   build-and-deploy:
     runs-on: ubuntu-latest # 在最新的ubuntu上运行
@@ -22,5 +23,6 @@ jobs: # workflows文件主体，可以指定一个或者多个，这里指定了
         with:
           ACCESS_TOKEN: ${{secrets.QXPBLOG}} # 这里是我们刚刚创建密钥的变量名称
           ssh-key: ${{secrets.QXPBLOG}}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: myblog
           FOLDER: build
