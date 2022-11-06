@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkqxpblog=self.webpackChunkqxpblog||[]).push([[974],{974:function(s,e,t){t.r(e),t.d(e,{default:function(){return r}});t(791);var n="styles_hooksTest__eANYa",u=t(871),o=t(184);function r(){return(0,o.jsxs)("div",{className:n,children:["hooks test",(0,o.jsx)("br",{}),(0,o.jsx)(u.j3,{})]})}}}]);
+//# sourceMappingURL=974.f78b44c8.chunk.js.map
