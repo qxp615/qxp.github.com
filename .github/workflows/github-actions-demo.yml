@@ -23,6 +23,6 @@ jobs: # workflows文件主体，可以指定一个或者多个，这里指定了
         with:
           ACCESS_TOKEN: ${{secrets.QXPBLOG}} # 这里是我们刚刚创建密钥的变量名称
           ssh-key: ${{secrets.QXPBLOG}}
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          repo-token: ${{ secrets.QXPBLOG }}
           BRANCH: myblog
           FOLDER: build
