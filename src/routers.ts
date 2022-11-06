@@ -1,5 +1,4 @@
 /* eslint-disable import/no-anonymous-default-export */
-import path from 'path'
 import { lazy, LazyExoticComponent } from 'react'
 export type RoutersConfigType = routeConfig[]
 interface routeConfig {
