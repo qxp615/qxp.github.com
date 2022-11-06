@@ -1,5 +1,5 @@
 {
-  "name": "read_react_code",
+  "name": "qxpblog",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -44,5 +44,6 @@
   },
   "devDependencies": {
     "gh-pages": "^4.0.0"
-  }
+  },
+  "homepage": "https://github615615.github.io/qxpblog"
 }
