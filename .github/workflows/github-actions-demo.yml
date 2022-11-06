@@ -20,5 +20,5 @@ jobs: # workflows文件主体，可以指定一个或者多个，这里指定了
         uses: JamesIves/github-pages-deploy-action@releases/v3 # 执行一些公开的action
         with:
           ACCESS_TOKEN: ${{secrets.QXPBLOG}} # 这里是我们刚刚创建密钥的变量名称
-          BRANCH: gh-pages
+          BRANCH: myblog
           FOLDER: build
