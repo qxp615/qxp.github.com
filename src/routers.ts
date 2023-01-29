@@ -1,15 +1,23 @@
 /* eslint-disable import/no-anonymous-default-export */
-import { lazy, LazyExoticComponent } from 'react'
+import { Children, lazy, LazyExoticComponent } from 'react'
 export type RoutersConfigType = routeConfig[]
 interface routeConfig {
     path: string,
     component: (() => JSX.Element) | LazyExoticComponent<any>
+    redirect?: string
+    index?: boolean
+    /** 作为左侧标题栏的名字 */
     name?: string
     /** 如果想要添加子路由，必须在写有children的地方使用Outlet组件来作为子路由的出口 */
     children?: routeConfig[]
 }
 
 const routesConfig: RoutersConfigType = [
+    {
+        path: '/jsapi',
+        component: lazy(() => import('./pages/jsApi')),
+        name: 'js api练习'
+    },
     {
         path: '/react_code',
         component: lazy(() => import('./App')),
@@ -27,6 +35,26 @@ const routesConfig: RoutersConfigType = [
                     }
                 ]
             }
+        ]
+
+    }, {
+        path: '/components',
+        name: '组件',
+        component: lazy(() => import('./pages/myComponents')),
+        children: [
+            {
+                path: 'antd-mobile',
+                name: 'antd-mobile',
+                component: lazy(() => import('./pages/myComponents/antdMobile')),
+                children: [
+                    {
+                        path: 'steps',
+                        name: 'steps',
+                        component: lazy(() => import('./pages/myComponents/antdMobile/Steps'))
+                    }
+                ]
+            }
+
         ]
 
     }

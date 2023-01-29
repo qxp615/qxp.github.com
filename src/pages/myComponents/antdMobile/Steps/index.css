@@ -1,0 +1,64 @@
+/* TODO 把下面的包在 conch-ui-steps-collapse-title中 */
+.adm-list-body {
+  --header-font-size: var(--title-font-size);
+}
+.adm-list-default .adm-list-body {
+  border: none;
+  font-size: var(--title-font-size);
+  line-height: 1;
+}
+.adm-list-item-arrow {
+  font-size: var(--title-font-size);
+}
+.adm-list-item {
+  padding-left: 0;
+  line-height: 1;
+}
+
+.adm-collapse-panel-header .adm-list-item-content-main {
+  padding: 0;
+  line-height: 1.5;
+}
+.adm-collapse-arrow-active {
+  transform: rotate(90deg);
+}
+
+.adm-list-item-content {
+  border: none;
+}
+a.adm-list-item:active:not(.adm-list-item-disabled) {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+/* TODO 把上面的包在 conch-ui-steps-collapse-title中 */
+
+.adm-step .adm-step-indicator::after {
+  background-color: var(--line-to-next);
+  background-image: var(--line-to-next-image);
+}
+
+.adm-step.adm-step-status-finish .adm-step-indicator::after {
+  background-color: var(--line-to-next-finish);
+  background-image: var(--line-to-next-finish-image);
+}
+
+.adm-steps-horizontal .adm-step .adm-step-indicator::after {
+  height: var(--line-to-next-width, 1px);
+}
+
+.adm-step.adm-step-status-finish .adm-step-icon-dot {
+  background: var(--adm-color-background-finish, #0067ff);
+  width: var(--dot-size, 8px);
+  height: var(--dot-size, 8px);
+}
+.adm-step.adm-step-status-process .adm-step-icon-dot {
+  background: var(--adm-color-background-process, #0067ff);
+}
+
+.adm-step.adm-step-status-wait .adm-step-icon-dot {
+  background: var(--adm-color-background-wait, #cdcdcd);
+}
+.adm-step-icon-dot {
+  width: var(--dot-size, 8px);
+  height: var(--dot-size, 8px);
+}

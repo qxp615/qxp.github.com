@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h2 {
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+
+<body>
+    <h2 id="h2_1"><span>123</span><span id="h2_1_span_2"></span></h2>
+    <h2 id="h2_2"></h2>
+    <script>
+        const h2_1_span_2 = document.getElementById('h2_1_span_2')
+        h2_1_span_2.innerHTML = '\n123\n123'
+    </script>
+</body>
+
+</html>

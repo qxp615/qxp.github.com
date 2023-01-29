@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+  height: 100%;
+}
+.left {
+  max-width: 500px;
+  overflow: auto;
+  box-shadow: inset rgb(255, 224, 229) 0 0 5px 1px;
+  align-self: stretch;
+  padding: 15px;
+}

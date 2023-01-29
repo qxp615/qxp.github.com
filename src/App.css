@@ -16,21 +16,6 @@
   }
 }
 
-.App-header {
-  background-color: #282c3449;
-  min-height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 40vw;
-  overflow: hidden;
-  font-size: calc(10px + 0.25vmin);
-  color: white;
-}
-.App-header:hover {
-  width: 40vw;
-}
-
 .App-link {
   color: #61dafb;
 }
