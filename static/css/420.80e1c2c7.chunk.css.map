@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/420.80e1c2c7.chunk.css","mappings":"AAAA,yBACE,SAAU,CACV,oBACF","sources":["pages/readReact/styles.module.css"],"sourcesContent":[".hooksTest {\n  color: red;\n  white-space: pre-wrap;\n}\n"],"names":[],"sourceRoot":""}
