@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        let obj = {
+            v:undefined,
+            get n(){
+                console.log('取值了：',this.v)
+                return this.v
+            },
+            set n(v){
+                console.log('赋值了：',v)
+                this.v=v
+            }
+        }
+        function* gen() {
+            obj.n = yield console.log("2-----0") ; //a1
+            obj.n = yield console.log('2-----1'); //a2
+            obj.n = yield console.log('2-----2');
+            alert(obj.n);
+        }
+
+        let generator = gen();
+
+        let question = generator.next(0).value; //1 第一个next传入的参数是没用的，会被忽略，因为next传入参数表示上一个yield的返回值，如果不传参数，则yield返回值的undefined; 此时只执行到了a1行那里（还未进行赋值）；
+        question = generator.next(1); //2 表示上一个yield（即a1）的返回值为1;此时执行到了a2那一行，(还未对a2行的obj.n进行赋值，但是对a1行的obj.n赋值了）
+        console.log('question:',question)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,104 @@
+.line_1 {
+  /* 
+    
+    background-image: linear-gradient(渐变方向, 颜色1[位置1], 颜色2[位置2], 颜色3[位置3]...);
+    使用表示方位的单词，会从颜色1【位置1】渐变到颜色2【位置2】，如果位置1和位置2的颜色相同则为纯色带
+    to top 表示从下往上的方式进行渐变 
+    to bottom 表示从上往下的方式进行渐变 
+    to right 表示从左往右的方式进行渐变 
+    to left 表示从右往左的方式进行渐变 
+    to top left 表示从右下向左上进行渐变(top和left可以交换位置，下同) 
+    to top right 表示从左下向右上进行渐变 
+    to bottom left 表示从右上向左下进行渐变 
+    to bottom right 表示从左上向右下进行渐变 
+    使用角度表示，例如0deg等同于to top， 
+    90deg等同于to right 使用弧度，单位为rad 
+    使用turn，代表环绕圆圈的圈数，0.5turn表示半圈，
+    也就是180deg 使用grad，表示百分度，4
+    00grad表示360deg ———————————————— 版权声明：本文为CSDN博主「踏雪寻鹭」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。 
+    原文链接：https: //blog.csdn.net/weixin_73143398/article/details/126608047
+
+    */
+  background-image: linear-gradient(to right, pink 20px, yellow 50%);
+  border: 1px solid black;
+  height: 100px;
+  margin: 20px;
+}
+.line_1:hover {
+  background-image: linear-gradient(to right, green 200px, yellow 100%);
+  transition: all 1s;
+}
+.line_2 {
+  background-image: linear-gradient(to right, var(--color) 200px, yellow 100%);
+  border: 1px solid black;
+  height: 100px;
+  margin: 20px;
+  transition: --color 1s;
+}
+@property --color {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: pink;
+}
+.line_2:hover {
+  --color: green;
+  transition: --color 1s;
+}
+.line_3 {
+  background-image: linear-gradient(to right, var(--color) 200px, yellow 100%);
+  border: 1px solid black;
+  height: 100px;
+  margin: 20px;
+  animation: blingbling 2.5s infinite;
+}
+@keyframes blingbling {
+  from {
+    --color: red;
+  }
+  50% {
+    --color: green;
+  }
+  100% {
+    --color: red;
+  }
+}
+.wave_1 {
+  height: 300px;
+  width: 500px;
+  background-image: radial-gradient(50px 20px at 200px 300px, white 90%, red 90%, red 98%, transparent 0), radial-gradient(30px 20px at 240px 300px, white 90%, black 90%, black 95%, transparent 0), radial-gradient(40px 30px at 290px 300px, white 90%, black 90%, black 95%, transparent 0);
+  animation: infinite 10s wave ease-in-out;
+  border: 1px solid black;
+  border-radius: var(--my-length-a) var(--my-length-b) 0 0;
+}
+@property --my-length-a {
+  syntax: '<length-percentage>';
+  inherits: false;
+  initial-value: 20%;
+}
+@property --my-length-b {
+  syntax: '<length-percentage>';
+  inherits: false;
+  initial-value: 20%;
+}
+@keyframes wave {
+  0% {
+    --my-length-a: 40%;
+    --my-length-b: 70%;
+  }
+  25% {
+    --my-length-a: 60%;
+    --my-length-b: 60%;
+  }
+  50% {
+    --my-length-a: 80%;
+    --my-length-b: 70%;
+  }
+  75% {
+    --my-length-a: 60%;
+    --my-length-b: 60%;
+  }
+  100% {
+    --my-length-a: 40%;
+    --my-length-b: 70%;
+  }
+}

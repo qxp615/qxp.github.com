@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let obj = {
+            a: 123,
+            b: 456,
+        }
+        Object.defineProperties(obj,{
+            c:{
+                enumerable:false,
+                configurable:true, // 如果为false，则getOwnPropertyDescriptor代理中无法修改这个c属性的属性描述
+            },
+        })
+
+        // 透明转发：
+        let objProxy = new Proxy(obj, {
+            get(target, property, receiver) {// 拦截读取属性操作，可用于使用了this的函数，访问器等
+                // do something
+                let v = Reflect.get(...arguments)
+                return v
+            },
+            set(target, prop, val) { // 拦截写入属性操作,可用于使用了this的函数，访问器等
+                // do something
+                let ifSuccess = Reflect.set(...arguments)
+                return ifSuccess
+            },
+            deleteProperty(target, prop) { // 拦截属性删除
+                // do something
+                let ifSuccess = Reflect.deleteProperty(...arguments);
+                return ifSuccess
+            },
+
+            // 拦截for in， Object.keys，会调用
+            ownKeys(target,prop){
+                // do something
+                return Reflect.ownKeys(...arguments)
+            },
+            // 上面这些遍历会先调用内部方法[[OwnPropertyKeys]]去检查属性的enumerable，所以需要
+            getOwnPropertyDescriptor(target,prop){
+                return {
+                    ...Reflect.getOwnPropertyDescriptor(...arguments),
+                    enumerable:true, // 这将使得for in，Object.keys可以看到enumerable为false的属性，前提是该属性必须为configurable:true,否则会报错
+                }
+            }
+        })
+
+    </script>
+</body>
+
+</html>

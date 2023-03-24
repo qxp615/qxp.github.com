@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class c1{
+            constructor(){
+                if(new.target==c1){
+                    // new.target表示的是new的时候，
+                    throw new Error('c1只能被继承')
+                }
+            }
+            str1='c1的类字段';
+            f1(){
+                console.log('c1的类方法')
+            }
+
+            static f3(){
+                console.log('c1的静态属性')
+            }
+        }
+
+        class c2 extends c1{
+            str2='c2';
+            f2(){
+                console.log('c2的类方法')
+            }
+           static f4(){
+                console.log('c2的静态方法')
+            }
+        }
+        
+
+        function checkInstance(obj,proto){
+            let pro=obj.__proto__
+        
+            while(pro){
+                if (pro === proto.prototype) {
+                    return true
+                }
+                pro=pro.__proto__
+            }
+            return false
+        }
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <input id="input1" type="text">
+    <div>js同步修改的值：<p id="p1"></p>
+    </div>
+    <script>
+        const p1 = document.getElementById('p1')
+        const input1 = document.getElementById('input1')
+        input1.addEventListener('input', change)
+        function change(e) {
+            p1.innerText = e.target.value;
+            // fttttt()
+            go();
+        }
+        async function getRes(time) {
+            let re = await new Promise((res) => {
+                setTimeout(() => {
+                    res(time)
+                }, time);
+            })
+
+            return re
+        }
+        let range = {
+            from: 0,
+            to: 5,
+            async *[Symbol.asyncIterator]() {
+                for (let index = this.from; index < this.to; index++) {
+                    const res = await getRes(index * 500)
+                    yield res
+                }
+            },
+            *[Symbol.iterator]() {
+                for (let index = this.from; index < this.to; index++) {
+                    const res = index * 500
+                    yield res
+                }
+            }
+        };
+
+        async function* sy() {
+            let count = 0;
+            for (let index = 0; index < 5; index++) {
+                const element = await getRes(index * 500)
+                yield element
+            }
+        }
+        let it1 = sy();
+
+
+        // (async () => {
+        //     for await (const iterator of range3) {
+        //         console.log(iterator)
+        //     }
+        // })()
+
+        function then111(arg) {
+            console.log('111', '参数：', arg)
+            return arg
+        }
+        function then222() {
+            console.log('222')
+        }
+        function then333() {
+            console.log('333')
+        }
+
+        async function go() {
+            let p1 = new Promise((res) => res());
+            p1.then(then111).then(then111).then(then111).then(then111).then(then111).then(then111).then(then111).then(then111).then(then111).then(then111)
+            let p2 = new Promise((res) => res());
+            p1.then(then222)
+            let p3 = new Promise((res) => res());
+            p1.then(then333)
+        };
+
+    </script>
+</body>
+
+</html>

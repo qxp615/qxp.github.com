@@ -2,25 +2,29 @@ import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import { Route, Routes, HashRouter, Navigate, Link } from 'react-router-dom';
+import { Route,Router,BrowserRouter, Routes, HashRouter, Navigate, Link, } from 'react-router-dom';
 import routers from './routers';
 import type { RoutersConfigType } from './routers';
+import store from './store';
+import { Provider } from 'react-redux';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-
+    {/* 这里可以换成 BrowserRouter，因为要放到git上，所以临时使用hash */}
     <HashRouter basename=''>
       <Suspense fallback={<h1>lodaing.....</h1>}>
-        <header className="App-header">
-          {RenderNav(routers)}
-        </header>
-        <Routes>
-          {RenderMyRoutes(routers)}
-          <Route path="*" element={<h1>404...</h1>} />
-        </Routes>
+        <Provider store={store}>
+          <header className="App-header">
+            {RenderNav(routers)}
+          </header>
+          <Routes>
+            {RenderMyRoutes(routers)}
+            <Route path="*" element={<h1>404...</h1>} />
+          </Routes>
+        </Provider>
       </Suspense>
     </HashRouter>
   </React.StrictMode>
@@ -41,7 +45,6 @@ function RenderMyRoutes(routesConfig: RoutersConfigType) {
       </Route>
     </>
   })
-  console.log(route, 'route')
   return route
 }
 

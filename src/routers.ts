@@ -14,6 +14,16 @@ interface routeConfig {
 
 const routesConfig: RoutersConfigType = [
     {
+        path: '/css',
+        component: lazy(() => import('./pages/cssTest')),
+        name:'css总结'
+    },
+    {
+        path: '/demos',
+        component: lazy(() => import('./pages/myDemos/')),
+        name: '临时的一些demo'
+    },
+    {
         path: '/jsapi',
         component: lazy(() => import('./pages/jsApi')),
         name: 'js api练习'

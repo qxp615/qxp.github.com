@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //不可以直接赋值为promise数组，因为这样promise就已经被执行了
+        const getPromiseArr = () => [
+            new Promise((res, rej) => { setTimeout(() => { rej('1'); console.log('err: 80ms') }, 80) }),
+            new Promise((res, rej) => { setTimeout(() => { rej('2'); console.log('err: 10ms') }, 10) }),
+            new Promise((res, rej) => { setTimeout(() => { rej('3'); console.log('err: 100ms') }, 100) }),
+            new Promise((res, rej) => { setTimeout(() => { res('4'); console.log('resolve: 20ms') }, 20) }),
+            new Promise((res, rej) => { setTimeout(() => { res('5'); console.log('resolve: 120ms') }, 120) })
+        ]
+
+        //promise.all会执行所有的promise，（即使有reject，）
+        //promise.all(..)如果有某个promise被reject，那么立即执行promise.all().catch到那个reject的promise, 并且promise.all的其他所有promise也会继续执行
+        // 只有全部都为resolve才会走到promise.all().then 第一个参数
+        Promise.all(getPromiseArr()).then(console.log).catch(console.log)
+
+
+        // 手写promise.all:
+        /* 
+        Promise.all的完成体应该符合以下特征：
+
+        输入为Iterator类型的参数，可以是Array，Map， Set，String ，可能也得包括魔改的Iterator（Symbol.iterator）之类
+        若输入的可迭代数据里不是Promise，则也需要原样输出
+        返回一个Promise实例，可以调用then和catch方法
+        输出在then里体现为保持原顺序的数组
+        输出在catch体现为最早的reject返回值
+        空 Iterator， resolve返回空数组
+        
+        */
+        // 输入不仅仅只有Array
+        function promiseAll(args) {
+            return new Promise((resolve, reject) => {
+                const promiseResults = [];
+                let iteratorIndex = 0;
+                // 已完成的数量，用于最终的返回，不能直接用完成数量作为iteratorIndex
+                // 输出顺序和完成顺序是两码事
+                let fullCount = 0;
+                // 用于迭代iterator数据
+                for (const item of args) {
+                    // for of 遍历顺序，用于返回正确顺序的结果
+                    // 因iterator用forEach遍历后的key和value一样，所以必须存一份for of的 iteratorIndex
+                    let resultIndex = iteratorIndex;
+                    iteratorIndex += 1;
+                    // 包一层，以兼容非promise的情况
+                    Promise.resolve(item).then(res => {
+                        promiseResults[resultIndex] = res;
+                        fullCount += 1;
+                        // Iterator 接口的数据无法单纯的用length和size判断长度，不能局限于Array和 Map类型中
+                        if (fullCount === iteratorIndex) {
+                            resolve(promiseResults)
+                        }
+                    }).catch(err => {
+                        reject(err)
+                    })
+                }
+                // 处理空 iterator 的情况
+                if (iteratorIndex === 0) {
+                    resolve(promiseResults)
+                }
+            }
+            )
+        }
+
+        setTimeout(() => {
+            console.log('分割线-----------')
+            promiseAll(getPromiseArr()).then(console.log).catch(console.log)
+        }, 3000);
+
+
+    </script>
+</body>
+
+</html>

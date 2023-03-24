@@ -9,27 +9,55 @@
     <style>
         .container {
             border: 1px solid red;
-            display: flex;
+            /* display: flex; */
             height: 200px;
-            width: 200px;
+            width: 1400px;
+            font-size: 50px;
+            line-height: 200px;
         }
 
         .container div {
-            border: 1px dashed;
-            width: 15%
+            border: 1px solid;
+            width: 15%;
+            display: inline;
+        }
+
+        .d1 {
+            line-height: 0;
+            /* 此时，d1的行（概念）的基线什么的都是重合，位于文字的中间了。 */
+            /* 
+            https://developer.mozilla.org/zh-CN/docs/Web/CSS/vertical-align
+            mdn 解释：text-top
+            使元素的顶部与父元素的字体顶部对齐。 */
+            vertical-align: text-top;
+            /* 可以看到， .d1的中线和父元素的字体顶部对齐了，修改行的高度为.d1的高度，发现它与父元素的文字对其了
+                再修改.d1的lihe-height为3倍.d1的高度，可以发现.d1与父元素的文字底部对齐了
+                所以，单独给.d1设置line-height, .d1似乎出现了属于它自己的“行”的概念，
+                .container有了一个行，行高为200px， .d1也有了自己的行（如果将.d1 display: inline-block;可以看到这个“行”），
+                vertical-align: text-top; 看起来就像是：
+                将自己的“行”的顶端与父元素的字体顶部对齐
+            */
+            /* 在我的电脑上，.d1的1倍高度是67.33px */
+            /* line-height: 67.33px; */
+            /* line-height: 201.99px; */
         }
     </style>
 </head>
-
+ 
 <body>
+<progress id=“pr” value=“30” max=“100”> </progress>
     <div class="container">
+        <div class="d1">1xjpPqmM</div>
+        <div>2xjpPqmM</div>3xjpPqmM
+        <div>4xjpPqmM </div>
+    </div>
+    <div>
         <div>
             1
         </div>
-        <div>2</div>
-        <div>3</div>
-        <div>4</div>
-        <div>5</div>
+        <div>
+            2
+        </div>
     </div>
 </body>
 

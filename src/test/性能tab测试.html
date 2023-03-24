@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>控制台的性能tab和debug的call stack测试</title>
+    <style>
+        .d1 {
+            height: 100px;
+            width: 100px;
+            background-color: red;
+
+        }
+
+        .d2 {
+            height: 100px;
+            width: 200px;
+            background-color: gray;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="d1" class="d1">点击修改高度</div>
+    <div id="d2" class="d2"></div>
+    <script>
+        const d1 = document.getElementById('d1')
+        function d1OnClick(e) {
+            d1.style.height = '200px';
+            testTask()
+        }
+        d1.addEventListener('click', d1OnClick)
+
+        function testTask() {
+            fn1()
+            fn2()
+        }
+
+        function timer_1() {
+            console.log('timer_1')
+        }
+        function fn1() {
+            setTimeout(timer_1, 0);
+        }
+        function fn2() {
+            function myPromise_1(res) {
+                res()
+            }
+            function myPromise_1_then(res) {
+                d1.style.height = '20px';
+                console.log('promise.then执行')
+            }
+            new Promise(myPromise_1).then(myPromise_1_then)
+        }
+
+    </script>
+</body>
+
+</html>

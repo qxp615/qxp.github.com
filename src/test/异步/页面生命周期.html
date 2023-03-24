@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <script>
+        document.addEventListener('DOMContentLoaded',(e)=>{
+            console.log('window:DOMContentLoaded', e)
+        })
+        window.addEventListener('load',(e)=>{
+            console.log('window:load',e)
+        })
+    </script>
+    <script defer src="./md1.js"></script>
+    <script async src="./md2.js"></script>
+    <script type="module" src="./md3.js"></script> -->
+
+    <div id="d1">123456789</div>
+    <script>
+        let range = new Range()
+        const d1 = document.getElementById('d1')
+        range.setStart(d1.firstChild,2)
+        range.setEnd(d1.firstChild,7)
+        console.log(range)
+    </script>
+</body>
+</html>

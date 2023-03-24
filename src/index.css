@@ -29,3 +29,67 @@ code {
   overflow: auto;
   z-index: 100;
 }
+/* 
+<length>：长度类型，如px、em等；
+<number>：数字类型；
+<percentage>：百分比类型；
+<length-percentage>：长度或百分比类型；
+<color>：颜色类型；
+<image>：图片类型；
+<url>：URL类型；
+<integer>：整数类型；
+<angle>：角度类型；
+<time>：时间类型；
+<resolution>：分辨率类型；
+<transform-function>：变换函数类型；
+<custom-ident>：自定义标识符类型；
+<transform-list>：变换列表类型；
+
+作者：田八
+链接：https://juejin.cn/post/7174439892993179662
+来源：稀土掘金
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+*/
+/* 不知道为什么这些属性无法渐变 */
+@property --my-number-1 {
+  syntax: "<number> | <percentage> | <integer>";
+  initial-value: 0;
+  inherits: false;
+}
+
+@property --my-number-2 {
+  syntax: "<number> | <percentage> | <integer>";
+  initial-value: 0;
+  inherits: false;
+}
+
+@property --my-number-3 {
+  syntax: "<number> | <percentage> | <integer>";
+  initial-value: 0;
+  inherits: false;
+}
+
+@property --my-percentage-1 {
+  syntax: "<percentage>";
+  initial-value: 0%;
+  inherits: false;
+}
+
+@property --my-length-1 {
+  syntax: "<length-percentage>";
+  initial-value: 0px;
+  inherits: false;
+}
+
+@property --my-length-2 {
+  syntax: "<length-percentage>";
+  initial-value: 0px;
+  inherits: false;
+}
+
+@property --my-color-1 {
+  syntax: "<color>";
+  initial-value: red;
+  inherits: false;
+}

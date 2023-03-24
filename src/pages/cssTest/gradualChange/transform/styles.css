@@ -1,0 +1,79 @@
+.basicItem {
+  width: 100px;
+  height: 100px;
+  background-color: pink;
+  font-size: 50px;
+  line-height: 100px;
+  text-align: center;
+}
+.t1 {
+  width: 200px;
+  height: 200px;
+  border: 1px solid red;
+}
+.t1 div {
+  transform: translate(10px, 10px) skew(10deg, 10deg) scale(0.8);
+  width: 100px;
+  height: 100px;
+  background-color: pink;
+  font-size: 50px;
+  line-height: 100px;
+  text-align: center;
+}
+.t2 {
+  width: 200px;
+  height: 200px;
+  border: 1px solid black;
+  margin: 40px;
+}
+.t2 .t2Box {
+  transform: perspective(276px) rotateX(-80deg) rotateY(25deg) rotate3d(1, 1, 1, 45deg);
+  transform-style: preserve-3d;
+  position: relative;
+  transform-origin: 50px 50px;
+  height: 0;
+  width: 0;
+}
+.t2 .t2_1 {
+  /* xy平面 */
+  width: 100px;
+  height: 100px;
+  background-color: pink;
+  font-size: 50px;
+  line-height: 100px;
+  text-align: center;
+  background-color: gray;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.t2 .t2_2 {
+  /* xz平面 */
+  width: 100px;
+  height: 100px;
+  background-color: pink;
+  font-size: 50px;
+  line-height: 100px;
+  text-align: center;
+  background-color: green;
+  transform: rotateX(90deg);
+  transform-style: preserve-3d;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.t2 .t2_3 {
+  /* yz平面 */
+  width: 100px;
+  height: 100px;
+  background-color: pink;
+  font-size: 50px;
+  line-height: 100px;
+  text-align: center;
+  background-color: purple;
+  transform: rotateY(90deg);
+  transform-style: preserve-3d;
+  position: absolute;
+  top: 0;
+  left: 0;
+}

@@ -1,0 +1,72 @@
+@keyframes toLeft {
+  0% {
+    transform: skewX(0deg);
+  }
+  40% {
+    transform: skewX(-20deg);
+  }
+  100% {
+    transform: skewX(0deg);
+  }
+}
+@keyframes toRight {
+  0% {
+    transform: skewX(0deg);
+  }
+  40% {
+    transform: skewX(20deg);
+  }
+  100% {
+    transform: skewX(0deg);
+  }
+}
+@keyframes textShow {
+  0% {
+    opacity: 0.1;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+.container {
+  width: 800px;
+  height: 500px;
+}
+.container .pagesContainer {
+  display: flex;
+  justify-content: flex-start;
+  overflow: auto;
+  height: 100%;
+  scroll-behavior: smooth;
+}
+.container .pagesContainer .page {
+  flex-shrink: 0;
+  height: 100%;
+  border: 2px solid green;
+  box-sizing: border-box;
+  width: 100%;
+  background-color: pink;
+  transition: transform 0.4s linear;
+  transform: skewX(0);
+  text-align: center;
+}
+.container .pagesContainer .visiblePage h2,
+.container .pagesContainer .visiblePage h3 {
+  animation: textShow 1s ease-in;
+}
+.container .pagesContainer .currentLeft {
+  transform-origin: left top;
+  position: relative;
+  width: 800px;
+  z-index: 10;
+  animation: toLeft 0.5s linear;
+}
+.container .pagesContainer .currentRight {
+  transform-origin: right top;
+  position: relative;
+  width: 800px;
+  z-index: 10;
+  animation: toRight 0.5s linear;
+}

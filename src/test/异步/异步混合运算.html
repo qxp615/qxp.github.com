@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let count =0;
+        function fetch(c){
+            return new Promise((res,rej)=>{
+                setTimeout(() => {
+                    res(c)
+                }, 3000);
+            })
+        }
+
+       async function addCount(c){
+            count = count + await fetch(c)
+            // count =  await fetch(c) + count // 换成这行就没问题了，因为+号运算符是从左到右，count被放到await之后读取，
+        }
+
+        addCount(2)
+        addCount(5)
+    </script>
+</body>
+</html>

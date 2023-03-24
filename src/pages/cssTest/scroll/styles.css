@@ -1,0 +1,99 @@
+.scroll_1 {
+  scroll-snap-type: both proximity;
+  /* 
+none
+当这个滚动容器的可视的 viewport 是滚动的，它会忽略捕捉位置。
+
+x
+滚动容器只捕捉其水平轴上的捕捉位置。
+
+y
+滚动容器只捕捉其垂直轴上的捕捉位置。
+
+block
+滚动容器仅捕捉其轴上块级元素的捕捉位置。
+
+inline
+滚动容器仅捕捉其轴上内联元素的捕捉位置。
+
+both
+滚动容器会独立捕捉到其两个轴上的位置（可能会捕捉到每个轴上的不同元素）
+
+mandatory（强制性的）
+以下面的center为例子，每次滚动必定将下一个数字放在中间
+
+proximity（接近，靠近）
+以下面的center为例子，鼠标滚轮滚动后，选择接近的进行滚动（如果一次滚动太小，会导致滚动下去又滚动回来）
+————————————————
+版权声明：本文为CSDN博主「三千数优一」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/weixin_48003149/article/details/122046974
+    */
+  width: 300px;
+  height: 200px;
+  overflow: auto;
+  border: 1px dashed;
+  scroll-padding: 0 0 0 0;
+  /*
+         写法同padding，也可也拆开写； 如果想要每次元素滚动都距离顶部10px，那么scroll-snap-align：start会直接吸顶；
+         再加上scroll-padding-top: 10px;就可以控制距离顶部10px，如果设置滚动元素的scroll-top为50，那么元素的初始scrollTop就不是0，而是40
+         ,有40px的padding-top被滚动上去了，以控制子元素距离顶部为10px
+ */
+  scroll-margin: 0;
+}
+.scroll_2 {
+  scroll-snap-type: both proximity;
+  /* 
+none
+当这个滚动容器的可视的 viewport 是滚动的，它会忽略捕捉位置。
+
+x
+滚动容器只捕捉其水平轴上的捕捉位置。
+
+y
+滚动容器只捕捉其垂直轴上的捕捉位置。
+
+block
+滚动容器仅捕捉其轴上块级元素的捕捉位置。
+
+inline
+滚动容器仅捕捉其轴上内联元素的捕捉位置。
+
+both
+滚动容器会独立捕捉到其两个轴上的位置（可能会捕捉到每个轴上的不同元素）
+
+mandatory（强制性的）
+以下面的center为例子，每次滚动必定将下一个数字放在中间
+
+proximity（接近，靠近）
+以下面的center为例子，鼠标滚轮滚动后，选择接近的进行滚动（如果一次滚动太小，会导致滚动下去又滚动回来）
+————————————————
+版权声明：本文为CSDN博主「三千数优一」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/weixin_48003149/article/details/122046974
+    */
+  width: 300px;
+  height: 200px;
+  overflow: auto;
+  border: 1px dashed;
+  scroll-padding: 0 0 0 0;
+  /*
+         写法同padding，也可也拆开写； 如果想要每次元素滚动都距离顶部10px，那么scroll-snap-align：start会直接吸顶；
+         再加上scroll-padding-top: 10px;就可以控制距离顶部10px，如果设置滚动元素的scroll-top为50，那么元素的初始scrollTop就不是0，而是40
+         ,有40px的padding-top被滚动上去了，以控制子元素距离顶部为10px
+ */
+  scroll-margin: 0;
+  scroll-snap-type: both mandatory;
+}
+.scrollDiv {
+  height: 200px;
+  margin: 5px;
+  border: 1px solid red;
+  font-size: 100px;
+  line-height: 200px;
+  text-align: center;
+  scroll-snap-align: center;
+}
+.container {
+  display: flex;
+  gap: 20px;
+  justify-content: flex-start;
+}

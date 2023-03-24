@@ -1,0 +1,30 @@
+.conic_1 {
+  height: 400px;
+  margin: 30px;
+  /* 
+   <conic-gradient()>=conic-gradient([ [ from <angle>]? [ at <position>]?] || <color-interpolation-method>, 
+   <angular-color-stop-list>) 
+   <position>=[ left | center | right] || [ top | center | bottom] | [ left | center | right | <length-percentage>] [ top | center | bottom | <length-percentage>]? | [ [ left | right] <length-percentage>] && [ [ top | bottom] <length-percentage>]
+   
+   
+   */
+  border: 1px solid;
+  background-image: conic-gradient(from 0deg at 50px 50px, #ff0000 0deg, red 30deg, green 30deg, green 60deg, transparent 0), conic-gradient(from 45deg at 50px 150px, #0008ff 0deg, red 30deg, green 30deg, green 60deg, transparent 0), radial-gradient(50px 50px at 50px 50px, transparent 0, transparent 100%, #7a7a7a 0), repeating-conic-gradient(from var(--my-angle-1) at 50px 50px, #fbff00 0deg, red 30deg, #8eff8e 60deg, transparent 0), conic-gradient(from -45deg at center center, red 0deg 90deg, green 0), conic-gradient(from 125deg at 0 0, red 0deg 20deg, transparent 0);
+  background-size: 100px 100px, 100px 200px, 100px 100px, 100px 100px, 150px 100px, 150px 150px;
+  background-repeat: no-repeat;
+  background-position: 0 0, 0 0, 100px 100px, 100px 100px, 200px 0px, 200px 100px;
+  animation: infinite 3s grow;
+}
+@property --my-angle-1 {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+@keyframes grow {
+  0% {
+    --my-angle-1: 0deg;
+  }
+  100% {
+    --my-angle-1: 360deg;
+  }
+}

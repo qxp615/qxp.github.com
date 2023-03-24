@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        function curry(func) {
+            return function curried(...arg) {
+                if (arg.length >= func.length) {
+                    return func.apply(this, arg)
+                } else {
+                    return function (...arg2) { // 收集剩余参数
+                        return curried.apply(this, arg.concat(arg2))
+                    }
+                }
+            }
+        }
+        function add(a, b, c, d, e) {
+            console.log('输入：', '' + a + b + c + d + e)
+        }
+
+        const curriedAdd = curry(add)
+
+    </script>
+</body>
+
+</html>

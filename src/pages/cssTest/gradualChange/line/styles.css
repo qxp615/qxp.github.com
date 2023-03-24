@@ -1,0 +1,115 @@
+.container {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  overflow: auto;
+}
+.container > div {
+  max-width: 200px;
+  word-break: break-all;
+}
+.container .basic {
+  height: 150px;
+  width: 150px;
+  border: 1px solid;
+}
+.container .line_1 {
+  height: 150px;
+  width: 150px;
+  border: 1px solid;
+  --my-length-1: 0px;
+  background-image: repeating-linear-gradient(45deg, grey 0, grey var(--my-length-1), lightblue var(--my-length-1), lightblue calc(var(--my-length-1) + 10px));
+  animation: lengthChange 3s infinite ease;
+}
+@keyframes lengthChange {
+  0% {
+    --my-length-1: 0px;
+  }
+  100% {
+    --my-length-1: 10px;
+  }
+}
+.container .line_2 {
+  height: 150px;
+  width: 150px;
+  border: 1px solid;
+  --my-length-1: 0px;
+  background-image: repeating-linear-gradient(45deg, grey var(--my-length-1), grey calc(var(--my-length-1) + 10px), lightblue calc(var(--my-length-1) + 10px), lightblue calc(var(--my-length-1) + 20px));
+  background-repeat: repeat;
+  animation: lengthChange 2s infinite linear;
+}
+@keyframes lengthChange {
+  0% {
+    --my-length-1: 0px;
+  }
+  100% {
+    --my-length-1: 20px;
+  }
+}
+.container .line_3 {
+  height: 150px;
+  width: 150px;
+  border: 1px solid;
+  --my-length-1: 80%;
+  --my-color-1: #c3ffff;
+  background-image: linear-gradient(90deg, transparent 0, var(--my-color-1) var(--my-length-1), transparent 0);
+  background-size: 150px 10px;
+  background-repeat: no-repeat;
+  background-position: left center;
+  animation: go_line3 infinite ease 5s;
+  border-color: var(--my-color-1);
+}
+@keyframes go_line3 {
+  from {
+    --my-length-1: 0%;
+    --my-color-1: #c3ffff;
+  }
+  to {
+    --my-length-1: 100%;
+    --my-color-1: red;
+  }
+}
+.container .line_4 {
+  height: 150px;
+  width: 150px;
+  border: 1px solid;
+  position: relative;
+  background-image: linear-gradient(45deg, transparent 50%, red 50%, pink 70%, transparent 0);
+  background-size: 50px 50px;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+.container .line_4::after {
+  display: block;
+  position: absolute;
+  z-index: 100;
+  content: '';
+  width: 50px;
+  height: 50px;
+  border: none;
+  background-image: linear-gradient(45deg, transparent 50%, black 50%, grey 70%, transparent 0);
+  background-size: 50px 50px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  transform-origin: 100% 100%;
+  rotate: 90deg;
+}
+.container .line_5 {
+  height: 150px;
+  width: 150px;
+  border: 1px solid;
+  --my-color-1: #c3ffff;
+  background-image: linear-gradient(45deg, transparent calc(var(--my-length-1) + 10%), var(--my-color-1) calc(var(--my-length-1) + 30%), #ffffff calc(var(--my-length-1) + 50%), transparent calc(var(--my-length-1) + 100%));
+  --my-length-1: 0%;
+  animation: go_line5 infinite 1s ease;
+}
+@keyframes go_line5 {
+  0% {
+    --my-length-1: 0%;
+    --my-color-1: #c3ffff;
+  }
+  100% {
+    --my-length-1: 100%;
+    --my-color-1: #eeff00;
+  }
+}

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #d2 {
+            height: 300px;
+            overflow: auto;
+            border: 1px solid red;
+            width: 100px;
+        }
+
+        #d3 {
+            height: 200px;
+        }
+
+        #d5 {
+            border: 4px dashed;
+        }
+
+        #dot {
+            background-color: pink;
+            width: 50px;
+            height: 50px;
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="d1">点击滚动红色框子</div>
+    <div id="d2">
+        <div id="d3">
+            <div id="d5"></div>
+            <div id="d4">8888</div>
+        </div>
+    </div>
+    <div>
+        <div id="dotClick">点击每次循环向右移动0.01px</div>
+        <div id="dot">123</div>
+    </div>
+    <script>
+        /* 
+        
+        打开性能tab，点击，可以看到f1下面有很多的重新计算样式
+        为什么会高频触发重新计算样式和布局，这两个是什么意思？和重排重绘有什么关系？
+        只会绘制最后一次，并没有改变50次高度；
+
+        结论：每次任务循环中，写dom属性不会立即引起重排重绘，他们将会缓存起来放到最后执行；
+        但是如果写了会引起重排的dom属性，并且读取了某些dom属性，那么将会立即执行重排；
+        在性能tab上可以看到每次事件循环的重排（布局）和重绘（计算过样式）
+
+        */
+        const d1 = document.getElementById('d1')
+        const d4 = document.getElementById('d4')
+        const d2 = document.getElementById('d2')
+        const d5 = document.getElementById('d5')
+        window.onload = () => {
+
+            for (let index = 0; index < 10; index++) {
+                const el = document.createElement('div')
+                el.innerText = '000' + index
+                d4.appendChild(el)
+
+            }
+        }
+        function f1(times) {
+            // d2.scrollBy({
+            //     top:10
+            // })
+            const height = (parseInt(d5.style.height) || times) + 10
+            d5.style.height = height + 'px'
+            // d5.style.color= '#'+Math.random().toString(16).slice(2,8) // 如果只改变颜色，那么将只会有重绘（重新计算样式）
+            console.log('滚动距离:', d4.getBoundingClientRect().top)// getComputedStyle也会引起即刻重绘
+            // delay(1000)
+        }
+        function count() {
+            let t = 0;
+            while (t++ < 50) {
+                f1(t)
+            }
+        }
+        function delay(time) {
+            let start = new Date().getTime()
+            while (new Date().getTime() < start + time) { }
+        }
+        d1.addEventListener('click', count)
+
+        const dotClick = document.getElementById('dotClick')
+        
+        dotClick.addEventListener('click', dotMove)
+
+        function dotMove() {
+            
+            const dot = document.getElementById('dot');
+            console.log(dot);
+            let left = parseFloat(dot.style.left) || 0
+            for (let index = 0; index < 10000; index++) {
+                dot.style.left = left + index/100 + 'px'
+                dot.style.backgroundColor='#'+Math.random().toString(16).slice(2,8)
+               let d= dot.clientLeft
+               console.log(d)
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,8 @@
+.root {
+  border: 1px solid red;
+  padding: 20px;
+}
+.root div:focus {
+  border: 1px solid red;
+  outline: 1px dashed green;
+}

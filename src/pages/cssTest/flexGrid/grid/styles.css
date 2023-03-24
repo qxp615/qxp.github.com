@@ -1,0 +1,33 @@
+.rootContainer {
+  display: flex;
+}
+.rootContainer .right {
+  width: 250px;
+  flex-shrink: 0;
+  order: 2;
+}
+.rootContainer .left {
+  flex-grow: 1;
+  max-height: 90vh;
+  overflow: auto;
+  order: 1;
+  padding-right: 20px;
+}
+.gridContainer {
+  display: grid;
+  grid-template-columns: auto;
+  border: 1px solid red;
+  grid-template-columns: max-content 1fr 1fr;
+  height: 300px;
+  grid-template-areas: "aa bb ." /* .表示不对这个网格区域进行命名 */ "cc dd dd" /* 相同命名可以表示合并网格区域，只有相邻的才可以合并 */ "ee ee ee";
+}
+.gridContainer .gridItem6 {
+  grid-area: dd;
+}
+.gridContainer div {
+  height: 50px;
+  width: 50px;
+  background-color: antiquewhite;
+  line-height: 50px;
+  text-align: center;
+}

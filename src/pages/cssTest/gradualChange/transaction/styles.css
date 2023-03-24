@@ -1,0 +1,25 @@
+.container {
+  font-size: 50px;
+  width: 25px;
+  overflow: hidden;
+}
+.container div {
+  width: fit-content;
+}
+.container .go {
+  transform: translate(-90%);
+  transition-property: transform;
+  transition-timing-function: linear;
+  transition-duration: 9s;
+}
+.dot {
+  border: 1px solid pink;
+  width: 100px;
+  height: 100px;
+  font-size: 30px;
+  background-color: antiquewhite;
+  position: absolute;
+}
+.dotContianer {
+  position: relative;
+}

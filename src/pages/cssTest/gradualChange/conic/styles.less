@@ -1,0 +1,58 @@
+.conic_1 {
+    // 圆锥渐变
+    // https: //www.cnblogs.com/coco1s/p/7079529.html
+    // https://developer.mozilla.org/zh-CN/docs/Web/CSS/gradient/conic-gradient
+    height: 400px;
+    margin: 30px;
+    /* 
+   <conic-gradient()>=conic-gradient([ [ from <angle>]? [ at <position>]?] || <color-interpolation-method>, 
+   <angular-color-stop-list>) 
+   <position>=[ left | center | right] || [ top | center | bottom] | [ left | center | right | <length-percentage>] [ top | center | bottom | <length-percentage>]? | [ [ left | right] <length-percentage>] && [ [ top | bottom] <length-percentage>]
+   
+   
+   */
+    border: 1px solid;
+    // 注意这里的position和background-position是有区别的，比如设置一个background-size：100px 100px的画布，这里的positon就是它相对于画布的位置，而background-position
+    //是画布相对于元素的位置
+    background-image:
+        conic-gradient(from 0deg at 50px 50px, rgb(255, 0, 0) 0deg, red 30deg, green 30deg, green 60deg, transparent 0), //1
+        conic-gradient(from 45deg at 50px 150px, rgb(0, 8, 255) 0deg, red 30deg, green 30deg, green 60deg, transparent 0), //2
+        radial-gradient(50px 50px at 50px 50px, transparent 0, transparent 100%, rgb(122, 122, 122) 0), // 制作一个圆，只露出中间的一部分
+        repeating-conic-gradient(from var(--my-angle-1) at 50px 50px, rgb(251, 255, 0) 0deg, red 30deg, rgb(142, 255, 142) 60deg, transparent 0), // 4
+        conic-gradient(from -45deg at center center,red 0deg 90deg,green 0), //5
+        conic-gradient(from 125deg at 0 0,red 0deg 20deg, transparent 0),
+    ;
+    background-size: 100px 100px, //1
+        100px 200px, //2 为什么这里第二个是200呢，因为background-positon都是0，0，而第二个背景图已经位于150处了，所以要放大size，或者改变第二个背景图的position
+        100px 100px, //3
+        100px 100px, //4
+        150px 100px, //5
+        150px 150px, //6
+    ;
+    background-repeat: no-repeat;
+    background-position: 0 0, //1
+        0 0, //2
+        100px 100px, //3
+        100px 100px, //4
+        200px 0px, //5
+        200px 100px,//6
+    ;
+    animation: infinite 3s grow;
+
+
+    @property --my-angle-1 {
+        syntax: '<angle>';
+        inherits: false;
+        initial-value: 0deg;
+    }
+
+    @keyframes grow {
+        0% {
+            --my-angle-1: 0deg;
+        }
+
+        100% {
+            --my-angle-1: 360deg;
+        }
+    }
+}
